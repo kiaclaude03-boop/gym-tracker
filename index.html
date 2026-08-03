@@ -107,6 +107,13 @@
     color: var(--sub);
     margin-left: 2px;
   }
+  .card.archived {
+    opacity: 0.5;
+  }
+  .card .tag.archived-tag {
+    background: none;
+    border: 1px solid var(--border);
+  }
   #empty {
     display: none;
     text-align: center;
@@ -133,61 +140,78 @@
 <div id="list"></div>
 <p id="empty">没找到相符的器材</p>
 
-<footer>Precor 器材 · 最后更新 2026-07-31</footer>
+<footer>Precor 器材 · 最后更新 2026-08-03</footer>
 
 <script>
   const DATA = [
-    { name: "Leg Press", zh: "腿举", weight: 54, category: "下半身 Lower Body" },
-    { name: "Leg Extension / Leg Curl", zh: "腿屈伸 / 腿弯举", weight: 59, category: "下半身 Lower Body" },
-    { name: "Inner Thigh", zh: "大腿内侧", weight: 36, category: "下半身 Lower Body" },
-    { name: "Outer Thigh", zh: "大腿外侧", weight: 32, category: "下半身 Lower Body" },
-    { name: "Glute Extension", zh: "臀部伸展", weight: 23, category: "下半身 Lower Body" },
-    { name: "Diverging Seated Row", zh: "坐姿划船", weight: 45, category: "上半身 Upper Body" },
-    { name: "Diverging Lat Pulldown", zh: "高位下拉", weight: 41, category: "上半身 Upper Body" },
-    { name: "Converging Chest Press", zh: "夹胸推举", weight: 32, category: "上半身 Upper Body" },
-    { name: "Multi-Press", zh: "多功能推举", weight: 32, category: "上半身 Upper Body" },
-    { name: "Rear Delt / Pec Fly", zh: "后三角 / 蝴蝶夹胸", weight: 32, category: "上半身 Upper Body" },
-    { name: "Lateral Raise", zh: "侧平举", weight: 27, category: "上半身 Upper Body" },
-    { name: "Biceps Curl / Triceps Extension", zh: "二头弯举 / 三头伸展", weight: 23, category: "上半身 Upper Body" },
+    { name: "Leg Press", zh: "腿举", weight: 54, category: "下半身 Lower Body", active: true },
+    { name: "Leg Curl", zh: "腿弯举", weight: 59, category: "下半身 Lower Body", active: true },
+    { name: "Glute Extension", zh: "臀部伸展", weight: 23, category: "下半身 Lower Body", active: true },
+    { name: "Diverging Seated Row", zh: "坐姿划船", weight: 45, category: "上半身 Upper Body", active: true },
+    { name: "Diverging Lat Pulldown", zh: "高位下拉", weight: 41, category: "上半身 Upper Body", active: true },
+    { name: "Converging Chest Press", zh: "夹胸推举", weight: 32, category: "上半身 Upper Body", active: true },
+    { name: "Multi-Press", zh: "多功能推举", weight: 32, category: "上半身 Upper Body", active: true },
+    { name: "Rear Delt", zh: "后三角", weight: 32, category: "上半身 Upper Body", active: true },
+
+    { name: "Leg Extension", zh: "腿屈伸", weight: 59, category: "下半身 Lower Body", active: false },
+    { name: "Inner Thigh", zh: "大腿内侧", weight: 36, category: "下半身 Lower Body", active: false },
+    { name: "Outer Thigh", zh: "大腿外侧", weight: 32, category: "下半身 Lower Body", active: false },
+    { name: "Pec Fly", zh: "蝴蝶夹胸", weight: 32, category: "上半身 Upper Body", active: false },
+    { name: "Lateral Raise", zh: "侧平举", weight: 27, category: "上半身 Upper Body", active: false },
+    { name: "Biceps Curl / Triceps Extension", zh: "二头弯举 / 三头伸展", weight: 23, category: "上半身 Upper Body", active: false },
   ];
 
   const listEl = document.getElementById("list");
   const emptyEl = document.getElementById("empty");
   const searchEl = document.getElementById("search");
 
+  function renderCard(item) {
+    const card = document.createElement("div");
+    card.className = item.active ? "card" : "card archived";
+    card.innerHTML = `
+      <div>
+        <div class="name">${item.name}</div>
+        <span class="tag${item.active ? "" : " archived-tag"}">${item.zh}${item.active ? "" : " · 已归档"}</span>
+      </div>
+      <div class="weight">${item.weight}<span>kg</span></div>
+    `;
+    return card;
+  }
+
   function render(filter) {
     const q = (filter || "").trim().toLowerCase();
-    const groups = {};
-    DATA.forEach(item => {
+    const matches = DATA.filter(item => {
       const hay = (item.name + " " + item.zh).toLowerCase();
-      if (q && !hay.includes(q)) return;
-      if (!groups[item.category]) groups[item.category] = [];
-      groups[item.category].push(item);
+      return !q || hay.includes(q);
     });
 
     listEl.innerHTML = "";
-    const categories = Object.keys(groups);
-    categories.forEach(cat => {
+
+    const active = matches.filter(item => item.active);
+    const archived = matches.filter(item => !item.active);
+
+    const groups = {};
+    active.forEach(item => {
+      if (!groups[item.category]) groups[item.category] = [];
+      groups[item.category].push(item);
+    });
+    Object.keys(groups).forEach(cat => {
       const title = document.createElement("div");
       title.className = "group-title";
       title.textContent = cat;
       listEl.appendChild(title);
-
-      groups[cat].forEach(item => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <div>
-            <div class="name">${item.name}</div>
-            <span class="tag">${item.zh}</span>
-          </div>
-          <div class="weight">${item.weight}<span>kg</span></div>
-        `;
-        listEl.appendChild(card);
-      });
+      groups[cat].forEach(item => listEl.appendChild(renderCard(item)));
     });
 
-    emptyEl.style.display = categories.length === 0 ? "block" : "none";
+    if (archived.length) {
+      const title = document.createElement("div");
+      title.className = "group-title";
+      title.textContent = "📦 已归档 Archived（暂不练，数据保留）";
+      listEl.appendChild(title);
+      archived.forEach(item => listEl.appendChild(renderCard(item)));
+    }
+
+    emptyEl.style.display = matches.length === 0 ? "block" : "none";
   }
 
   searchEl.addEventListener("input", e => render(e.target.value));
