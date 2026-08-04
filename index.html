@@ -14,6 +14,9 @@
     --accent: #d0021b;
     --border: #e5e5ea;
     --chip-bg: #eef0f2;
+    --grid: #e8e8ed;
+    --axis: #c7c7cc;
+    --good: #006300;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -24,6 +27,9 @@
       --accent: #ff453a;
       --border: #2c2c2e;
       --chip-bg: #2c2c2e;
+      --grid: #2c2c2e;
+      --axis: #3a3a3c;
+      --good: #30d158;
     }
   }
   * { box-sizing: border-box; }
@@ -37,7 +43,7 @@
     margin: 0 auto;
   }
   header {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   h1 {
     font-size: 1.4rem;
@@ -48,6 +54,34 @@
     font-size: 0.85rem;
     margin: 0;
   }
+
+  /* ---------- 分页切换 ---------- */
+  #tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--chip-bg);
+    border-radius: 10px;
+    padding: 3px;
+    margin: 16px 0 20px;
+  }
+  #tabs button {
+    flex: 1;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--sub);
+    background: none;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 4px;
+    -webkit-appearance: none;
+  }
+  #tabs button[aria-selected="true"] {
+    background: var(--card-bg);
+    color: var(--text);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  }
+
   #search {
     width: 100%;
     padding: 12px 14px;
@@ -56,7 +90,7 @@
     border: 1px solid var(--border);
     background: var(--card-bg);
     color: var(--text);
-    margin: 16px 0 24px;
+    margin: 0 0 24px;
     -webkit-appearance: none;
   }
   #search:focus {
@@ -180,6 +214,149 @@
     color: var(--sub);
     padding: 40px 0;
   }
+
+  /* ---------- Dashboard ---------- */
+  #view-dash[hidden], #view-list[hidden] { display: none; }
+
+  #kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .kpi {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 12px 14px;
+  }
+  .kpi .k-label {
+    font-size: 0.72rem;
+    color: var(--sub);
+    line-height: 1.3;
+  }
+  .kpi .k-value {
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-top: 6px;
+    line-height: 1.1;
+  }
+  .kpi .k-value small {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--sub);
+    margin-left: 2px;
+  }
+
+  .panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 12px;
+  }
+  .panel h2 {
+    font-size: 0.98rem;
+    margin: 0;
+    font-weight: 600;
+  }
+  .panel .p-sub {
+    font-size: 0.76rem;
+    color: var(--sub);
+    margin: 4px 0 0;
+    line-height: 1.5;
+  }
+  .chart { margin-top: 12px; }
+  .chart svg { display: block; touch-action: pan-y; }
+  .chart-label {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--sub);
+    margin: 16px 0 -4px;
+  }
+
+  .sm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(142px, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .sm {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 10px 4px;
+  }
+  .sm .chart { margin-top: 2px; }
+  .sm .sm-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .sm .sm-zh {
+    font-size: 0.7rem;
+    color: var(--sub);
+  }
+  .sm .sm-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .sm .sm-now {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .sm .sm-now span { font-size: 0.7rem; font-weight: 500; color: var(--sub); margin-left: 1px; }
+  .sm .sm-delta { font-size: 0.72rem; font-weight: 600; color: var(--good); }
+  .sm .sm-delta.flat { color: var(--sub); font-weight: 500; }
+
+  .note {
+    font-size: 0.76rem;
+    color: var(--sub);
+    line-height: 1.6;
+    margin: 10px 0 0;
+  }
+  .warn {
+    background: var(--chip-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    margin-top: 12px;
+  }
+  .empty-state {
+    text-align: center;
+    color: var(--sub);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    padding: 24px 8px;
+  }
+
+  details.tableview { margin-top: 12px; }
+  details.tableview summary {
+    font-size: 0.82rem;
+    color: var(--sub);
+    cursor: pointer;
+    padding: 6px 2px;
+  }
+  .tw { overflow-x: auto; margin-top: 8px; }
+  table.tv {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+  }
+  table.tv th, table.tv td {
+    text-align: left;
+    padding: 6px 10px 6px 0;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  table.tv th { color: var(--sub); font-weight: 600; }
+  table.tv td.num { text-align: right; padding-right: 0; }
+
   footer {
     text-align: center;
     color: var(--sub);
@@ -195,17 +372,28 @@
   <p class="sub">走到器材前，搜一下名字，马上知道上次做多少公斤</p>
 </header>
 
-<input type="text" id="search" placeholder="搜索器材名字，例如 leg / chest / row…" autocomplete="off">
-
-<div id="progress-bar">
-  <span id="progress-text"></span>
-  <button id="reset-btn" type="button">重置 Reset</button>
+<div id="tabs" role="tablist">
+  <button type="button" role="tab" id="tab-list" aria-selected="true">今天 Checklist</button>
+  <button type="button" role="tab" id="tab-dash" aria-selected="false">趋势 Dashboard</button>
 </div>
 
-<div id="list"></div>
-<p id="empty">没找到相符的器材</p>
+<section id="view-list">
+  <input type="text" id="search" placeholder="搜索器材名字，例如 leg / chest / row…" autocomplete="off">
 
-<footer>Precor 器材 · 最后更新 2026-08-03</footer>
+  <div id="progress-bar">
+    <span id="progress-text"></span>
+    <button id="reset-btn" type="button">重置 Reset</button>
+  </div>
+
+  <div id="list"></div>
+  <p id="empty">没找到相符的器材</p>
+</section>
+
+<section id="view-dash" hidden>
+  <div id="dash-body"></div>
+</section>
+
+<footer>Precor 器材 · 最后更新 2026-08-04</footer>
 
 <script>
   const DATA = [
@@ -226,6 +414,11 @@
     { name: "Biceps Curl / Triceps Extension", zh: "二头弯举 / 三头伸展", weight: 23, category: "上半身 Upper Body", active: false },
   ];
 
+  const SETS = 3, REPS = 8;   // Kia 固定 3 组 × 8 下，用来算训练量
+
+  /* =========================================================
+     今天 Checklist（原有功能，未改动）
+     ========================================================= */
   const listEl = document.getElementById("list");
   const emptyEl = document.getElementById("empty");
   const searchEl = document.getElementById("search");
@@ -331,6 +524,348 @@
     render(searchEl.value);
   });
   render("");
+
+  /* =========================================================
+     趋势 Dashboard
+     ========================================================= */
+  const NS = "http://www.w3.org/2000/svg";
+  const dashBody = document.getElementById("dash-body");
+  let HISTORY = null, dashState = "loading";
+
+  const parseDate = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+  const fmtShort = d => `${d.getMonth() + 1}/${d.getDate()}`;
+  const startOfToday = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
+
+  function svgEl(parent, tag, attrs) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    parent.appendChild(e);
+    return e;
+  }
+  function scale(d0, d1, r0, r1) {
+    if (d1 === d0) return () => (r0 + r1) / 2;
+    return v => r0 + (v - d0) * (r1 - r0) / (d1 - d0);
+  }
+  function niceTicks(min, max, count) {
+    if (!(max > min)) return [min];
+    const step0 = Math.pow(10, Math.floor(Math.log10((max - min) / count)));
+    const err = (max - min) / count / step0;
+    const s = step0 * (err >= 7.5 ? 10 : err >= 3.5 ? 5 : err >= 1.5 ? 2 : 1);
+    const out = [];
+    for (let v = Math.ceil(min / s) * s; v <= max + 1e-9; v += s) out.push(Math.round(v * 1e6) / 1e6);
+    return out;
+  }
+
+  /* 某台器材的重量序列（changelog → 依日期排序的点） */
+  function seriesFor(machine) {
+    return HISTORY.weights
+      .filter(w => w.machine === machine)
+      .map(w => ({ t: parseDate(w.date), v: w.kg, est: !!w.est }))
+      .sort((a, b) => a.t - b.t);
+  }
+  /* 阶梯查值：某个日期当下的重量（没纪录过就是 null） */
+  function valueAt(pts, t) {
+    let v = null;
+    for (const p of pts) { if (p.t <= t) v = p.v; else break; }
+    return v;
+  }
+
+  /* 阶梯折线：值一直保持到下一次改变 */
+  function stepPath(pts, x, y, endT) {
+    let d = "";
+    pts.forEach((p, i) => {
+      d += (i === 0 ? `M${x(p.t)},${y(p.v)}` : `H${x(p.t)}V${y(p.v)}`);
+    });
+    if (endT) d += `H${x(endT)}`;
+    return d;
+  }
+
+  /* ---------- 迷你阶梯图（小倍数用，无坐标轴） ---------- */
+  function sparkline(host, pts, endT) {
+    host.innerHTML = "";
+    const w = Math.max(100, Math.round(host.getBoundingClientRect().width));
+    const h = 40, padL = 2, padR = 28, padT = 7, padB = 7;
+    const svg = svgEl(host, "svg", { width: w, height: h, viewBox: `0 0 ${w} ${h}` });
+
+    const vs = pts.map(p => p.v);
+    let lo = Math.min(...vs), hi = Math.max(...vs);
+    if (lo === hi) { lo -= 1; hi += 1; }
+    const pad = (hi - lo) * 0.25;
+    const x = scale(pts[0].t.getTime(), endT.getTime(), padL, w - padR);
+    const y = scale(lo - pad, hi + pad, h - padB, padT);
+    const X = t => x(t.getTime ? t.getTime() : t);
+
+    const line = stepPath(pts, X, y, endT);
+    svgEl(svg, "path", {
+      d: line, fill: "none", stroke: "var(--accent)",
+      "stroke-width": "2", "stroke-linejoin": "round", "stroke-linecap": "round"
+    });
+    /* 端点：2px 底色环，跨线也看得清 */
+    const last = pts[pts.length - 1];
+    svgEl(svg, "circle", { cx: X(endT), cy: y(last.v), r: "5.5", fill: "var(--card-bg)" });
+    svgEl(svg, "circle", { cx: X(endT), cy: y(last.v), r: "3.5", fill: "var(--accent)" });
+    /* 只标端点值，不是每个点都标 */
+    const lab = svgEl(svg, "text", {
+      x: X(endT) + 8, y: y(last.v) + 4, fill: "var(--sub)",
+      "font-size": "11", "font-family": "inherit"
+    });
+    lab.textContent = last.v;
+  }
+
+  /* ---------- 有坐标轴的图（折线 / 柱状），含 hover/点按读值 ---------- */
+  function axisChart(host, opts) {
+    const { pts, kind, endT, fmtV, fmtTip } = opts;
+    host.innerHTML = "";
+    const w = Math.max(240, Math.round(host.getBoundingClientRect().width));
+    const h = 190, padL = 40, padR = 14, padT = 14, padB = 26;
+    const svg = svgEl(host, "svg", { width: w, height: h, viewBox: `0 0 ${w} ${h}` });
+
+    const vs = pts.map(p => p.v);
+    let lo = kind === "bar" ? 0 : Math.min(...vs), hi = Math.max(...vs);
+    if (lo === hi) { lo = Math.max(0, lo - 1); hi += 1; }
+    const headroom = (hi - lo) * (kind === "bar" ? 0.15 : 0.2);
+    const yLo = kind === "bar" ? 0 : lo - headroom, yHi = hi + headroom;
+
+    const t0 = pts[0].t.getTime();
+    const t1 = (endT || pts[pts.length - 1].t).getTime();
+    const y = scale(yLo, yHi, h - padB, padT);
+
+    /* 柱状图给两边留半根柱子的空间 */
+    const nBars = pts.length;
+    const bandPad = kind === "bar" ? (w - padL - padR) / (nBars * 2) : 0;
+    const x = scale(t0, t1 === t0 ? t0 + 1 : t1, padL + bandPad, w - padR - bandPad);
+    const X = t => x(t.getTime ? t.getTime() : t);
+
+    /* 网格：实线细线，一格灰，不抢戏 */
+    niceTicks(yLo, yHi, 4).forEach(v => {
+      svgEl(svg, "line", { x1: padL, y1: y(v), x2: w - padR, y2: y(v), stroke: "var(--grid)", "stroke-width": "1" });
+      const tk = svgEl(svg, "text", {
+        x: padL - 6, y: y(v) + 3.5, "text-anchor": "end", fill: "var(--sub)",
+        "font-size": "10", "font-family": "inherit", style: "font-variant-numeric:tabular-nums"
+      });
+      tk.textContent = fmtV ? fmtV(v) : v;
+    });
+    svgEl(svg, "line", { x1: padL, y1: h - padB, x2: w - padR, y2: h - padB, stroke: "var(--axis)", "stroke-width": "1" });
+
+    if (kind === "bar") {
+      const bw = Math.min(24, (w - padL - padR) / nBars - 4);
+      pts.forEach(p => {
+        const bx = X(p.t) - bw / 2, by = y(p.v), bh = Math.max(1, (h - padB) - by), r = Math.min(4, bw / 2, bh);
+        /* 顶端 4px 圆角、贴基线那端是直角 */
+        svgEl(svg, "path", {
+          d: `M${bx},${by + bh}V${by + r}Q${bx},${by} ${bx + r},${by}H${bx + bw - r}Q${bx + bw},${by} ${bx + bw},${by + r}V${by + bh}Z`,
+          fill: "var(--accent)"
+        });
+      });
+    } else {
+      const isStep = kind === "step";
+      const d = isStep ? stepPath(pts, X, y, endT)
+        : pts.map((p, i) => `${i ? "L" : "M"}${X(p.t)},${y(p.v)}`).join("");
+      svgEl(svg, "path", {
+        d, fill: "none", stroke: "var(--accent)", "stroke-width": "2",
+        "stroke-linejoin": "round", "stroke-linecap": "round"
+      });
+      pts.forEach(p => {
+        svgEl(svg, "circle", { cx: X(p.t), cy: y(p.v), r: "5.5", fill: "var(--card-bg)" });
+        svgEl(svg, "circle", { cx: X(p.t), cy: y(p.v), r: "3.5", fill: "var(--accent)" });
+      });
+    }
+
+    /* x 轴：只标首尾，中间不挤 */
+    [pts[0], pts[pts.length - 1]].forEach((p, i) => {
+      if (pts.length === 1 && i === 1) return;
+      const tx = svgEl(svg, "text", {
+        x: X(p.t), y: h - padB + 15, "text-anchor": i === 0 ? "start" : "end",
+        fill: "var(--sub)", "font-size": "10", "font-family": "inherit"
+      });
+      tx.textContent = fmtShort(p.t);
+    });
+
+    /* hover / 点按：十字线 + 数值气泡。数值在表格里也查得到，不是唯一入口 */
+    const hoverG = svgEl(svg, "g", { style: "pointer-events:none", opacity: "0" });
+    const vline = svgEl(hoverG, "line", { y1: padT, y2: h - padB, stroke: "var(--axis)", "stroke-width": "1" });
+    const hdot = svgEl(hoverG, "circle", { r: "4.5", fill: "var(--accent)", stroke: "var(--card-bg)", "stroke-width": "2" });
+    const bubble = svgEl(hoverG, "rect", { rx: "6", fill: "var(--card-bg)", stroke: "var(--border)", "stroke-width": "1" });
+    const btext = svgEl(hoverG, "text", { "font-size": "11", "font-family": "inherit", fill: "var(--text)" });
+
+    const hit = svgEl(svg, "rect", { x: padL, y: padT, width: w - padL - padR, height: h - padT - padB, fill: "transparent" });
+    function moveTo(evt) {
+      const box = svg.getBoundingClientRect();
+      const mx = (evt.clientX - box.left) * (w / box.width);
+      let best = pts[0], bd = Infinity;
+      pts.forEach(p => { const d2 = Math.abs(X(p.t) - mx); if (d2 < bd) { bd = d2; best = p; } });
+      const px = X(best.t), py = y(best.v);
+      vline.setAttribute("x1", px); vline.setAttribute("x2", px);
+      hdot.setAttribute("cx", px); hdot.setAttribute("cy", py);
+      btext.textContent = fmtTip ? fmtTip(best) : `${fmtShort(best.t)} · ${best.v}`;
+      const tw = btext.getComputedTextLength() + 16;
+      const bx = Math.max(padL, Math.min(w - padR - tw, px - tw / 2));
+      bubble.setAttribute("x", bx); bubble.setAttribute("y", padT - 2);
+      bubble.setAttribute("width", tw); bubble.setAttribute("height", 20);
+      btext.setAttribute("x", bx + 8); btext.setAttribute("y", padT + 12);
+      hoverG.setAttribute("opacity", "1");
+    }
+    hit.addEventListener("pointermove", moveTo);
+    hit.addEventListener("pointerdown", moveTo);
+    hit.addEventListener("pointerleave", () => hoverG.setAttribute("opacity", "0"));
+  }
+
+  /* ---------- 组装 dashboard ---------- */
+  function h(tag, cls, html) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+
+  function renderDash() {
+    if (dashState === "loading") { dashBody.innerHTML = `<p class="empty-state">读取历史资料中…</p>`; return; }
+    if (dashState === "error") {
+      dashBody.innerHTML = `<p class="empty-state">读不到 history.json，趋势图暂时显示不了。<br>Checklist 不受影响。</p>`;
+      return;
+    }
+
+    dashBody.innerHTML = "";
+    const today = startOfToday();
+    const activeMachines = DATA.filter(m => m.active);
+
+    /* ---- KPI ---- */
+    const kpis = h("div", null); kpis.id = "kpis";
+    const bumped = activeMachines.filter(m => {
+      const pts = seriesFor(m.name);
+      return pts.some((p, i) => i > 0 && p.v > pts[i - 1].v && (today - p.t) / 864e5 <= 30);
+    }).length;
+    const thisMonth = (HISTORY.runs || []).filter(r => {
+      const d = parseDate(r.date);
+      return d.getFullYear() === today.getFullYear() && d.getMonth() === today.getMonth();
+    });
+    const km = thisMonth.reduce((s, r) => s + r.km, 0);
+    [
+      ["在练器材", activeMachines.length, "台"],
+      ["近 30 天加重", bumped, "台"],
+      ["本月跑量", thisMonth.length ? (Math.round(km * 10) / 10) : "—", thisMonth.length ? "km" : ""]
+    ].forEach(([label, val, unit]) => {
+      kpis.appendChild(h("div", "kpi", `<div class="k-label">${label}</div><div class="k-value">${val}${unit ? `<small>${unit}</small>` : ""}</div>`));
+    });
+    dashBody.appendChild(kpis);
+
+    /* ---- 资料不同步检查（Gymmy 漏改一边时看得出来） ---- */
+    const drift = activeMachines
+      .map(m => ({ m, last: valueAt(seriesFor(m.name), today) }))
+      .filter(o => o.last !== null && o.last !== o.m.weight);
+    if (drift.length) {
+      dashBody.appendChild(h("div", "warn",
+        `⚠️ <b>资料不同步</b>：${drift.map(o => `${o.m.name}（清单 ${o.m.weight}kg / 历史 ${o.last}kg）`).join("、")}。
+         请 Gymmy 把 <code>index.html</code> 的 DATA 和 <code>history.json</code> 对齐。`));
+    }
+
+    /* ---- 总训练量 ---- */
+    const dates = [...new Set(HISTORY.weights.map(w => w.date))].sort().map(parseDate);
+    const volPts = dates.map(t => ({
+      t,
+      v: activeMachines.reduce((s, m) => s + (valueAt(seriesFor(m.name), t) || 0) * SETS * REPS, 0)
+    }));
+    const volPanel = h("section", "panel");
+    volPanel.appendChild(h("h2", null, "总训练量 Volume Load"));
+    volPanel.appendChild(h("p", "p-sub",
+      `在练 ${activeMachines.length} 台的重量加总 × ${SETS} 组 × ${REPS} 下。线往上 = 整体在进步；新器材加进来那天会跳一段。`));
+    const volChart = h("div", "chart"); volPanel.appendChild(volChart);
+    dashBody.appendChild(volPanel);
+    axisChart(volChart, {
+      pts: volPts, kind: "step", endT: today,
+      fmtV: v => v >= 1000 ? (v / 1000).toFixed(1) + "k" : v,
+      fmtTip: p => `${fmtShort(p.t)} · ${p.v.toLocaleString()} kg`
+    });
+
+    /* ---- 每台器材（小倍数） ---- */
+    const mPanel = h("section", "panel");
+    mPanel.appendChild(h("h2", null, "每台器材的重量趋势"));
+    mPanel.appendChild(h("p", "p-sub", "阶梯线 = 重量一直保持到下次调整。右边数字是现在的公斤数。"));
+    const grid = h("div", "sm-grid"); mPanel.appendChild(grid);
+    const sparks = [];
+    activeMachines.forEach(m => {
+      const pts = seriesFor(m.name);
+      if (!pts.length) return;
+      const first = pts[0].v, now = pts[pts.length - 1].v, d = now - first;
+      const cell = h("div", "sm",
+        `<div class="sm-name">${m.name}</div><div class="sm-zh">${m.zh}</div>
+         <div class="sm-row"><span class="sm-now">${now}<span>kg</span></span>
+         <span class="sm-delta${d > 0 ? "" : " flat"}">${d > 0 ? `↑ +${d}kg` : "持平"}</span></div>`);
+      const host = h("div", "chart"); cell.appendChild(host);
+      grid.appendChild(cell);
+      sparks.push([host, pts]);
+    });
+    dashBody.appendChild(mPanel);
+    sparks.forEach(([host, pts]) => sparkline(host, pts, today));
+
+    /* ---- 跑步 ---- */
+    const runs = (HISTORY.runs || []).map(r => ({ ...r, t: parseDate(r.date) })).sort((a, b) => a.t - b.t);
+    const rPanel = h("section", "panel");
+    rPanel.appendChild(h("h2", null, "跑步"));
+    if (!runs.length) {
+      rPanel.appendChild(h("p", "p-sub", "距离、时间、配速的趋势会显示在这里。"));
+      rPanel.appendChild(h("p", "empty-state",
+        "还没有跑步纪录。<br>跑完跟 Gymmy 讲「今天跑了 X 公里、用了 Y 分钟」，就会出现在这里。"));
+    } else {
+      rPanel.appendChild(h("p", "p-sub", "配速 = 时间 ÷ 距离，<b>线往下走 = 变快</b>。"));
+      rPanel.appendChild(h("p", "chart-label", "每次距离（公里）"));
+      const c1 = h("div", "chart"); rPanel.appendChild(c1);
+      rPanel.appendChild(h("p", "chart-label", "配速（分钟 / 公里）"));
+      const c2 = h("div", "chart"); rPanel.appendChild(c2);
+      dashBody.appendChild(rPanel);
+      axisChart(c1, {
+        pts: runs.map(r => ({ t: r.t, v: r.km })), kind: "bar",
+        fmtV: v => v, fmtTip: p => `${fmtShort(p.t)} · ${p.v} km`
+      });
+      axisChart(c2, {
+        pts: runs.map(r => ({ t: r.t, v: Math.round(r.min / r.km * 100) / 100 })), kind: "line",
+        fmtV: v => v.toFixed(1), fmtTip: p => `${fmtShort(p.t)} · ${p.v.toFixed(2)} 分/km`
+      });
+    }
+    if (!runs.length) dashBody.appendChild(rPanel);
+
+    /* ---- 表格（每个图都有的数字版本） ---- */
+    const rows = HISTORY.weights.slice().sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0)
+      .map(w => `<tr><td>${w.date}</td><td>${w.machine}${w.est ? " *" : ""}</td><td class="num">${w.kg}</td></tr>`).join("");
+    const runRows = runs.slice().reverse()
+      .map(r => `<tr><td>${r.date}</td><td>${r.km} km</td><td class="num">${r.min} 分</td></tr>`).join("");
+    const det = h("details", "tableview");
+    det.innerHTML = `<summary>看数字表格</summary>
+      <div class="tw"><table class="tv"><thead><tr><th>日期</th><th>器材</th><th class="num">公斤</th></tr></thead><tbody>${rows}</tbody></table></div>
+      ${runRows ? `<div class="tw"><table class="tv"><thead><tr><th>日期</th><th>距离</th><th class="num">时间</th></tr></thead><tbody>${runRows}</tbody></table></div>` : ""}
+      <p class="note">* 标星的是回填推算值：建站时有几台器材是合并成一笔记录的（例如 Leg Extension / Leg Curl），
+      后来才拆开，所以拆开前的重量是从合并项推回去的，不是当时分开量到的。</p>`;
+    dashBody.appendChild(det);
+  }
+
+  /* ---- 分页切换 ---- */
+  const tabList = document.getElementById("tab-list");
+  const tabDash = document.getElementById("tab-dash");
+  const viewList = document.getElementById("view-list");
+  const viewDash = document.getElementById("view-dash");
+
+  function showTab(which) {
+    const isDash = which === "dash";
+    tabDash.setAttribute("aria-selected", String(isDash));
+    tabList.setAttribute("aria-selected", String(!isDash));
+    viewDash.hidden = !isDash;
+    viewList.hidden = isDash;
+    if (isDash) renderDash();
+  }
+  tabList.addEventListener("click", () => showTab("list"));
+  tabDash.addEventListener("click", () => showTab("dash"));
+
+  let rt;
+  window.addEventListener("resize", () => {
+    if (viewDash.hidden) return;
+    clearTimeout(rt);
+    rt = setTimeout(renderDash, 150);
+  });
+
+  fetch("history.json", { cache: "no-cache" })
+    .then(r => r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)))
+    .then(j => { HISTORY = j; dashState = "ready"; if (!viewDash.hidden) renderDash(); })
+    .catch(err => { console.error("history.json 读取失败", err); dashState = "error"; if (!viewDash.hidden) renderDash(); });
 </script>
 
 </body>

@@ -1,0 +1,38 @@
+{
+  "_readme": [
+    "健身历史资料。Gymmy 维护，网站的『趋势 Dashboard』读这个档画图。",
+    "weights 是 changelog：只在重量『有变』时 append 一笔，图表会自动把上一个值延续下去。",
+    "所以要看某台器材现在多少公斤 = 取它最后一笔。第一笔 2026-07-30 是建站基线（全部器材都写）。",
+    "est:true 代表这笔是回填推算的：建站时有几台器材是合并成一笔写的（例如 'Leg Extension / Leg Curl'），",
+    "后来才拆开，所以拆开前的重量是从合并项推回去的，不是当时分开量到的。",
+    "runs 是跑步纪录：date 日期、km 距离(公里)、min 时间(分钟)。配速由网站自己算 = min / km。",
+    "改完这个档，index.html 里 DATA 的 weight 也要跟着改（两边要一致，dashboard 会检查并提示不同步）。"
+  ],
+
+  "weights": [
+    { "date": "2026-07-30", "machine": "Leg Press", "kg": 54 },
+    { "date": "2026-07-30", "machine": "Leg Curl", "kg": 41, "est": true },
+    { "date": "2026-07-30", "machine": "Leg Extension", "kg": 41, "est": true },
+    { "date": "2026-07-30", "machine": "Glute Extension", "kg": 23 },
+    { "date": "2026-07-30", "machine": "Inner Thigh", "kg": 32, "est": true },
+    { "date": "2026-07-30", "machine": "Outer Thigh", "kg": 32, "est": true },
+    { "date": "2026-07-30", "machine": "Diverging Seated Row", "kg": 45 },
+    { "date": "2026-07-30", "machine": "Converging Chest Press", "kg": 32 },
+    { "date": "2026-07-30", "machine": "Multi-Press", "kg": 32 },
+    { "date": "2026-07-30", "machine": "Rear Delt", "kg": 32, "est": true },
+    { "date": "2026-07-30", "machine": "Pec Fly", "kg": 32, "est": true },
+    { "date": "2026-07-30", "machine": "Lateral Raise", "kg": 27 },
+    { "date": "2026-07-30", "machine": "Biceps Curl / Triceps Extension", "kg": 23 },
+
+    { "date": "2026-07-31", "machine": "Leg Curl", "kg": 59, "est": true },
+    { "date": "2026-07-31", "machine": "Leg Extension", "kg": 59, "est": true },
+    { "date": "2026-07-31", "machine": "Inner Thigh", "kg": 36 },
+    { "date": "2026-07-31", "machine": "Diverging Lat Pulldown", "kg": 41 },
+
+    { "date": "2026-08-03", "machine": "Glute Extension", "kg": 32 },
+    { "date": "2026-08-03", "machine": "Diverging Seated Row", "kg": 50 },
+    { "date": "2026-08-03", "machine": "Diverging Lat Pulldown", "kg": 45 }
+  ],
+
+  "runs": []
+}
