@@ -393,7 +393,7 @@
   <div id="dash-body"></div>
 </section>
 
-<footer>Precor 器材 · 最后更新 2026-08-04</footer>
+<footer>Precor 器材 · 最后更新 2026-08-05</footer>
 
 <script>
   const DATA = [
@@ -633,7 +633,8 @@
     /* 柱状图给两边留半根柱子的空间 */
     const nBars = pts.length;
     const bandPad = kind === "bar" ? (w - padL - padR) / (nBars * 2) : 0;
-    const x = scale(t0, t1 === t0 ? t0 + 1 : t1, padL + bandPad, w - padR - bandPad);
+    /* 只有一笔资料时 t0 === t1,交给 scale() 回传中点,点才会画在正中间而不是贴左边 */
+    const x = scale(t0, t1, padL + bandPad, w - padR - bandPad);
     const X = t => x(t.getTime ? t.getTime() : t);
 
     /* 网格：实线细线，一格灰，不抢戏 */
@@ -671,11 +672,13 @@
       });
     }
 
-    /* x 轴：只标首尾，中间不挤 */
+    /* x 轴：只标首尾，中间不挤；只有一笔就置中标一个 */
+    const solo = pts.length === 1;
     [pts[0], pts[pts.length - 1]].forEach((p, i) => {
-      if (pts.length === 1 && i === 1) return;
+      if (solo && i === 1) return;
       const tx = svgEl(svg, "text", {
-        x: X(p.t), y: h - padB + 15, "text-anchor": i === 0 ? "start" : "end",
+        x: X(p.t), y: h - padB + 15,
+        "text-anchor": solo ? "middle" : (i === 0 ? "start" : "end"),
         fill: "var(--sub)", "font-size": "10", "font-family": "inherit"
       });
       tx.textContent = fmtShort(p.t);
