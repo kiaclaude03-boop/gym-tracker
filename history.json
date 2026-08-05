@@ -31,7 +31,11 @@
 
     { "date": "2026-08-03", "machine": "Glute Extension", "kg": 32 },
     { "date": "2026-08-03", "machine": "Diverging Seated Row", "kg": 50 },
-    { "date": "2026-08-03", "machine": "Diverging Lat Pulldown", "kg": 45 }
+    { "date": "2026-08-03", "machine": "Diverging Lat Pulldown", "kg": 45 },
+
+    { "date": "2026-08-05", "machine": "Leg Curl", "kg": 64 },
+    { "date": "2026-08-05", "machine": "Leg Press", "kg": 69 },
+    { "date": "2026-08-05", "machine": "Diverging Lat Pulldown", "kg": 47 }
   ],
 
   "runs": [
