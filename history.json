@@ -34,5 +34,7 @@
     { "date": "2026-08-03", "machine": "Diverging Lat Pulldown", "kg": 45 }
   ],
 
-  "runs": []
+  "runs": [
+    { "date": "2026-08-04", "km": 3.07, "min": 26.6 }
+  ]
 }
