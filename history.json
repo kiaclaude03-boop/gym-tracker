@@ -41,7 +41,9 @@
 
     { "date": "2026-08-07", "machine": "Diverging Seated Row", "kg": 56 },
     { "date": "2026-08-07", "machine": "Leg Press", "kg": 73 },
-    { "date": "2026-08-07", "machine": "Rear Delt", "kg": 38 }
+    { "date": "2026-08-07", "machine": "Rear Delt", "kg": 38 },
+
+    { "date": "2026-08-10", "machine": "Leg Curl", "kg": 68 }
   ],
 
   "runs": [
