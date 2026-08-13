@@ -43,12 +43,14 @@
     { "date": "2026-08-07", "machine": "Leg Press", "kg": 73 },
     { "date": "2026-08-07", "machine": "Rear Delt", "kg": 38 },
 
-    { "date": "2026-08-10", "machine": "Leg Curl", "kg": 68 }
+    { "date": "2026-08-10", "machine": "Leg Curl", "kg": 68 },
+    { "date": "2026-08-12", "machine": "Leg Press", "kg": 78 }
   ],
 
   "runs": [
     { "date": "2026-08-04", "km": 3.07, "min": 26.6 },
     { "date": "2026-08-06", "km": 3.13, "min": 25.8 },
-    { "date": "2026-08-08", "km": 3.18, "min": 25.4 }
+    { "date": "2026-08-08", "km": 3.18, "min": 25.4 },
+    { "date": "2026-08-13", "km": 3.58, "min": 30 }
   ]
 }
