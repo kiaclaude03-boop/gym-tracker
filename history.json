@@ -44,7 +44,9 @@
     { "date": "2026-08-07", "machine": "Rear Delt", "kg": 38 },
 
     { "date": "2026-08-10", "machine": "Leg Curl", "kg": 68 },
-    { "date": "2026-08-12", "machine": "Leg Press", "kg": 78 }
+    { "date": "2026-08-12", "machine": "Leg Press", "kg": 78 },
+    { "date": "2026-08-15", "machine": "Diverging Lat Pulldown", "kg": 50 },
+    { "date": "2026-08-15", "machine": "Multi-Press", "kg": 36 }
   ],
 
   "runs": [
