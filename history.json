@@ -57,7 +57,13 @@
     { "date": "2026-08-19", "machine": "Diverging Lat Pulldown", "kg": 54 },
     { "date": "2026-08-19", "machine": "Rear Delt", "kg": 43 },
     { "date": "2026-08-19", "machine": "Pec Fly", "kg": 34 },
-    { "date": "2026-08-19", "machine": "Multi-Press", "kg": 45 }
+    { "date": "2026-08-19", "machine": "Multi-Press", "kg": 45 },
+
+    { "date": "2026-08-22", "machine": "Leg Press", "kg": 82 },
+    { "date": "2026-08-22", "machine": "Leg Curl", "kg": 77 },
+    { "date": "2026-08-22", "machine": "Diverging Lat Pulldown", "kg": 56 },
+    { "date": "2026-08-22", "machine": "Rear Delt", "kg": 45 },
+    { "date": "2026-08-22", "machine": "Pec Fly", "kg": 36 }
   ],
 
   "runs": [
