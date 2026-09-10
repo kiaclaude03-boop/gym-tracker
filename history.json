@@ -70,7 +70,9 @@
     { "date": "2026-08-29", "machine": "Leg Curl", "kg": 82 },
     { "date": "2026-08-29", "machine": "Diverging Seated Row", "kg": 59 },
     { "date": "2026-08-29", "machine": "Leg Press", "kg": 87 },
-    { "date": "2026-08-29", "machine": "Abdominal Crunch", "kg": 45 }
+    { "date": "2026-08-29", "machine": "Abdominal Crunch", "kg": 45 },
+
+    { "date": "2026-09-10", "machine": "Abdominal Crunch", "kg": 52 }
   ],
 
   "runs": [
