@@ -76,7 +76,10 @@
 
     { "date": "2026-09-14", "machine": "Abdominal Crunch", "kg": 50 },
     { "date": "2026-09-14", "machine": "Rear Delt", "kg": 47 },
-    { "date": "2026-09-14", "machine": "Pec Fly", "kg": 38 }
+    { "date": "2026-09-14", "machine": "Pec Fly", "kg": 38 },
+
+    { "date": "2026-09-16", "machine": "Diverging Seated Row", "kg": 61 },
+    { "date": "2026-09-16", "machine": "Leg Curl", "kg": 86 }
   ],
 
   "runs": [
